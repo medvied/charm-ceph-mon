@@ -1,0 +1,45 @@
+name: Nightly TICS scan
+
+on:
+  schedule:
+    - cron: '1 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  TICS:
+    runs-on: ubuntu-latest
+    environment: TICS
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          echo "::group::apt update"
+          sudo apt update
+          echo "::endgroup::"
+          echo "::group::apt install..."
+          sudo apt install -y python3-pip pylint flake8 tox
+          echo "::endgroup::"
+
+      - name: Install everything from all requirements.txt files
+        run: |
+          sudo pip3 install --requirement requirements.txt
+          sudo pip3 install --requirement build-requirements.txt
+          sudo pip3 install --requirement test-requirements.txt
+
+      - name: Run coverage tests
+        run: |
+          tox -e cover
+
+      - name: TICS GitHub Action
+        uses: tiobe/tics-github-action@v3
+        with:
+          viewerUrl: https://canonical.tiobe.com/tiobeweb/TICS/api/cfg?name=default
+          ticsAuthToken: ${{ secrets.TICSAUTHTOKEN }}
+          project: charm-ceph-mon
+          installTics: true
+          filelist: .
+          calc: ALL

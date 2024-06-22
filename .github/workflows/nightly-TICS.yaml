@@ -44,4 +44,4 @@ jobs:
           project: charm-ceph-mon
           installTics: true
           filelist: .
-          calc: ALL
+          # calc: ALL

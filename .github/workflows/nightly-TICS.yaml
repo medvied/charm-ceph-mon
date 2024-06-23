@@ -37,8 +37,6 @@ jobs:
       - name: TICS GitHub Action
         uses: tiobe/tics-github-action@v3
         with:
-          mode: client
-          branchname: tics-test-branch
           viewerUrl: https://canonical.tiobe.com/tiobeweb/TICS/api/cfg?name=default
           ticsAuthToken: ${{ secrets.TICSAUTHTOKEN }}
           project: charm-ceph-mon

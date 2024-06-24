@@ -42,4 +42,4 @@ jobs:
           project: charm-ceph-mon
           installTics: true
           filelist: .
-          calc: TOTALTESTCOVERAGE
+          calc: INTEGRATIONTESTCOVERAGE

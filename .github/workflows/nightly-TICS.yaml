@@ -42,5 +42,5 @@ jobs:
           project: charm-ceph-mon
           installTics: true
           filelist: .
-          calc: UNITTESTCOVERAGE
+          calc: UNITTESTCOVERAGE,ABSTRACTINTERPRETATION,CYCLOMATICCOMPLEXITY,COMPILERWARNING,CODINGSTANDARD,DUPLICATEDCODE,FANOUT,SECURITY
           additionalFlags: "-resultdir ./cover/"

@@ -40,7 +40,7 @@ jobs:
           mode: qserver
           project: charm-ceph-mon
           viewerUrl: https://canonical.tiobe.com/tiobeweb/TICS/api/cfg?name=default
-          branchdir: ${{ GITHUB_WORKSPACE }}
+          branchdir: ${{ env.GITHUB_WORKSPACE }}
           ticsAuthToken: ${{ secrets.TICSAUTHTOKEN }}
           installTics: true
           calc: ALL

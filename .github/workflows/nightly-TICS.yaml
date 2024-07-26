@@ -2,7 +2,7 @@ name: Nightly TICS scan
 
 on:
   schedule:
-    - cron: '1 1 * * *'
+    - cron: '44 1 * * *'
   workflow_dispatch:
 
 permissions:
@@ -36,6 +36,19 @@ jobs:
 
       - name: TICS GitHub Action
         uses: tiobe/tics-github-action@v3
+        with:
+          mode: qserver
+          project: charm-ceph-mon
+          viewerUrl: https://canonical.tiobe.com/tiobeweb/TICS/api/cfg?name=default
+          branchdir: ${{ GITHUB_WORKSPACE }}
+          ticsAuthToken: ${{ secrets.TICSAUTHTOKEN }}
+          installTics: true
+          calc: ALL
+
+      # Disabled. Shows an example of how to run it.
+      - name: TICS GitHub Action Client
+        uses: tiobe/tics-github-action@v3
+        if: false
         with:
           viewerUrl: https://canonical.tiobe.com/tiobeweb/TICS/api/cfg?name=default
           ticsAuthToken: ${{ secrets.TICSAUTHTOKEN }}
